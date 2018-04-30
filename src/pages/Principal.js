@@ -53,7 +53,7 @@ const mapStateToProps = state => {
   return {
     paises: state.paises.paises,
     paisSeleccionado: state.paises.paisSeleccionado,
-    noticias: state.noticias.articulos
+    noticias: state.noticias
   }
 }
 

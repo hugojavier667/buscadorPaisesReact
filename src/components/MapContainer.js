@@ -11,18 +11,28 @@ export class MapContainer extends Component {
 
   render() {
     const position = this.props.pais != undefined ?
-      [this.props.pais.latlng[0],this.props.pais.latlng[1]]
+      [this.props.pais.latlng[0], this.props.pais.latlng[1]]
       : [this.state.lat, this.state.lng];
 
     const zoom = this.props.pais != undefined
-      ? 6 : this.state.zoom;  
-        
+      ? 6 : this.state.zoom;
+
     return (
       <Map center={position} zoom={zoom} className="leaflet-container">
         <TileLayer
           attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
           url="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        {this.props.pais != undefined
+          ? (<Marker position={position}>
+            <Popup>
+              <span>
+                {this.props.pais.name}
+              <img style={{ maxHeight: '10px' }} src={this.props.pais.flag} />
+              </span>
+            </Popup>
+          </Marker>)
+          : (<div></div>)}
 
       </Map>
     )

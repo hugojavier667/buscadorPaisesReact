@@ -3,6 +3,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 import classnames from 'classnames';
 import DetailsComponent from '../components/DetailsComponent';
 import NoticiasComponent from './NoticiasComponent';
+import Preloader from './Preloader';
 
 class InfoComponent extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class InfoComponent extends Component {
 
   render() {
     const pais = this.props.pais;
-    const noticias = this.props.noticias;
+    const noticias = this.props.noticias.articulos;
+    const buscandoNoticias = this.props.noticias.buscando;
 
     const tabsStyle = {
       marginBottom: "1rem"
@@ -60,10 +62,12 @@ class InfoComponent extends Component {
             </Row>
           </TabPane>
           <TabPane tabId="2">
-            {pais != undefined
-              ? noticias != undefined ? <NoticiasComponent noticias={noticias} />
-                : <h6>No hay noticias que mostrar</h6>
-              : <h6>Debe seleccionar un pais</h6>}
+
+            {buscandoNoticias ? <Preloader />
+              : pais != undefined
+                ? (noticias.lenght != 0 ? <NoticiasComponent noticias={noticias} />
+                  : <h6>No hay noticias que mostrar</h6>)
+                : <h6>Debe seleccionar un pais</h6>}
           </TabPane>
         </TabContent>
       </div>

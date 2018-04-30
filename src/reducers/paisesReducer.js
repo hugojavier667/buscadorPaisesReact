@@ -22,7 +22,7 @@ export default function reducer(state =
             return { ...state, paises: action.payload.data };
         }
         case "SELECCIONAR_PAIS": {
-            if(action.payload == undefined)
+            if(action.payload === undefined)
                 return {...state};
             return { ...state, paisSeleccionado: action.payload };
         }

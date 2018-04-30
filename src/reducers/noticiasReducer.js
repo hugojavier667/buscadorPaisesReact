@@ -1,6 +1,6 @@
 export default function reducer(state =
     {
-        
+        buscando : false
     }
     , action) {
     switch (action.type) {
@@ -9,7 +9,10 @@ export default function reducer(state =
             return {};
         }    
         case "BUSCAR_NOTICIAS_FULFILLED": {
-            return { ...state, articulos: action.payload.data.articles };
+            return { ...state, articulos: action.payload.data.articles , buscando: false};
+        }
+        case "BUSCAR_NOTICIAS_PENDING": {
+            return { ...state, buscando: true};
         }
     }
     return state;

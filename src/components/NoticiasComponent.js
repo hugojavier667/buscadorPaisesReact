@@ -49,12 +49,12 @@ class NoticiasComponent extends Component {
     const { noticias } = this.props;
     console.log(noticias);
 
-    const slides = noticias.map((item) => {
+    const slides = noticias.map((item, index) => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.url}
+          key={index}
         >
           <img src={item.urlToImage} alt={item.altText} />
           <CarouselCaption captionText={item.description} captionHeader={item.title} />
